@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Heart, ShoppingCart } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
 
 const Navbar: React.FC = () => {
     const { isAuthenticated, user, logout } = useAuth();
+    const { cartCount } = useCart();
 
     return (
         <div className="bg-base-100 border-b border-gray-800">
@@ -40,29 +42,38 @@ const Navbar: React.FC = () => {
                         Sell Games
                     </Link>
 
-                    <Link to="/login" className="btn btn-sm btn-outline rounded-full px-6 normal-case text-white border-gray-600 hover:bg-gray-800 hover:border-gray-500">
-                        Sign In
-                    </Link>
+                    {!isAuthenticated && (
+                        <>
+                            <Link to="/register" className="btn btn-sm btn-outline border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black rounded-full px-6 normal-case font-semibold">
+                                Sign Up
+                            </Link>
+                            <Link to="/login" className="btn btn-sm btn-outline rounded-full px-6 normal-case text-white border-gray-600 hover:bg-gray-800 hover:border-gray-500">
+                                Sign In
+                            </Link>
+                        </>
+                    )}
 
                     <button className="btn btn-ghost btn-circle btn-sm hover:bg-gray-800">
                         <Heart size={20} className="text-white" />
                     </button>
 
-                    <button className="btn btn-ghost btn-circle btn-sm hover:bg-gray-800">
+                    <Link to="/cart" className="btn btn-ghost btn-circle btn-sm hover:bg-gray-800">
                         <div className="indicator">
                             <ShoppingCart size={20} className="text-white" />
-                            <span className="badge badge-sm indicator-item badge-primary text-black font-bold">0</span>
+                            {cartCount > 0 && (
+                                <span className="badge badge-sm indicator-item badge-primary text-black font-bold">{cartCount}</span>
+                            )}
                         </div>
-                    </button>
+                    </Link>
 
                     {isAuthenticated && (
                         <div className="dropdown dropdown-end">
-                            <label tabIndex={0} className="btn btn-sm btn-error rounded-full px-6 normal-case font-semibold">
+                            <label tabIndex={0} className="btn btn-sm bg-yellow-400 hover:bg-yellow-500 rounded-full px-6 normal-case font-semibold text-black">
                                 {user?.username}
                             </label>
                             <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 border border-gray-700">
-                                <li><Link to="/profile">Profile</Link></li>
-                                <li><Link to="/my-listings">My Listings</Link></li>
+                                <li><Link to="/dashboard">Dashboard</Link></li>
+                                <li><Link to="/dashboard">My Listings</Link></li>
                                 <li><button onClick={logout}>Logout</button></li>
                             </ul>
                         </div>

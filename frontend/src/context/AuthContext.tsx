@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect, type ReactNode } from 'react';
-// import api from '../api/axios';
+import api from '../api/axios';
 
 interface User {
     id: number;
@@ -27,13 +27,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             if (token) {
                 try {
                     // Verify token or get user profile
-                    // For MVP, we might just assume valid if token exists, but better to fetch profile
-                    // const response = await api.get('/auth/profile/'); 
-                    // setUser(response.data);
-
-                    // Placeholder: decoding token or just setting state if token exists
-                    // For now, we'll just set a dummy user or try to fetch if endpoint exists
-                    setUser({ id: 1, username: 'User', email: 'user@example.com' }); // Replace with actual fetch
+                    const response = await api.get('/auth/profile/');
+                    setUser(response.data);
                 } catch (error) {
                     localStorage.removeItem('access_token');
                 }

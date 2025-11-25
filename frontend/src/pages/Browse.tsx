@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import GameCard from '../components/GameCard';
-import { List, Grid3x3 } from 'lucide-react';
+import { List, Grid3x3, ShoppingCart, Heart } from 'lucide-react';
 
 const Browse: React.FC = () => {
+    const navigate = useNavigate();
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
 
     // Mock data
     const games = Array(10).fill(null).map((_, i) => ({
-        id: i,
+        id: i + 1,
         title: i % 2 === 0 ? "Far Cry 5" : "CyberPunk 2077",
         price: 43.99,
         platform: i % 3 === 0 ? "PS4" : "PC",
@@ -154,9 +156,13 @@ const Browse: React.FC = () => {
                         <div className={viewMode === 'grid' ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" : "flex flex-col gap-3"}>
                             {games.map((game) => (
                                 viewMode === 'grid' ? (
-                                    <GameCard key={game.id} {...game} />
+                                    <GameCard key={game.id} id={game.id} title={game.title} price={game.price} image={game.image} platform={game.platform} discount={game.discount} />
                                 ) : (
-                                    <div key={game.id} className="card card-side bg-gray-900 shadow-xl border border-gray-800 hover:border-gray-700 transition-all">
+                                    <div
+                                        key={game.id}
+                                        onClick={() => navigate(`/product/${game.id}`)}
+                                        className="card card-side bg-gray-900 shadow-xl border border-gray-800 hover:border-yellow-400 transition-all cursor-pointer"
+                                    >
                                         <figure className="w-40 h-32 overflow-hidden flex-shrink-0">
                                             <img src={game.image} alt={game.title} className="w-full h-full object-cover" />
                                         </figure>
@@ -180,12 +186,17 @@ const Browse: React.FC = () => {
                                                     )}
                                                 </div>
                                                 <div className="flex gap-2">
-                                                    <button className="btn btn-circle btn-sm btn-ghost hover:text-red-500 text-gray-400">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                                                        </svg>
+                                                    <button
+                                                        onClick={(e) => e.stopPropagation()}
+                                                        className="btn btn-circle btn-sm btn-ghost hover:text-red-500 text-gray-400"
+                                                    >
+                                                        <Heart size={18} />
                                                     </button>
-                                                    <button className="btn btn-sm btn-primary rounded-full px-6 text-black font-semibold">
+                                                    <button
+                                                        onClick={(e) => e.stopPropagation()}
+                                                        className="btn btn-sm btn-primary rounded-full px-6 text-black font-semibold"
+                                                    >
+                                                        <ShoppingCart size={16} />
                                                         Add to Cart
                                                     </button>
                                                 </div>
