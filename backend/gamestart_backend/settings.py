@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-3qtzw#0djrf!*l14=mlf@s@_0nsoymilu*+$yqi1)iyapk=u6r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+import os
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(",")
 
 
 # Application definition
@@ -60,10 +61,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173", 
+    "http://localhost:5173",
+    "http://k8s-default-gamestar-fa81aaba12-df74123a0e4405b2.elb.eu-west-1.amazonaws.com",
 ]
 
 ROOT_URLCONF = 'gamestart_backend.urls'

@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    baseURL: '/api',
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-// Add a request interceptor to add the auth token to headers
+// Add a request interceptor to add the auth token toss headers
 api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('access_token');

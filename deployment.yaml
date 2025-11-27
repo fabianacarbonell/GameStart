@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gamestart-deployment
+  labels:
+    app: gamestart
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gamestart
+  template:
+    metadata:
+      labels:
+        app: gamestart
+    spec:
+      containers:
+        - name: backend
+          image: am404n/gamestartb:latestv3
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DEBUG
+              value: "1"
+            - name: DJANGO_ALLOWED_HOSTS
+              value: "*"
+        - name: frontend
+          image: am404n/gamestartb:frontlatestv6
+          ports:
+            - containerPort: 80
+          env:
+            - name: VITE_API_URL
+              value: "/api"
