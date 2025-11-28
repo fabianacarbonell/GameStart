@@ -6,17 +6,25 @@ import { ChevronLeft, ChevronRight, TrendingUp, Zap, Star } from 'lucide-react';
 const Home: React.FC = () => {
     // Mock data for MVP
     const trendingGames = [
-        { id: 1, title: "Far Cry 5", price: 16.99, platform: "PC", image: "https://image.api.playstation.com/vulcan/ap/rnd/202009/2914/Ci9v9C1z9C1z9C1z9C1z9C1z.png", discount: 15 },
-        { id: 2, title: "Minecraft", price: 18.99, platform: "PS4", image: "https://image.api.playstation.com/vulcan/img/rnd/202010/2119/9f1W1W1W1W1W1W1W1W1W1W1W.png" },
-        { id: 3, title: "Elden Ring", price: 46.99, platform: "XBOX", image: "https://image.api.playstation.com/vulcan/ap/rnd/202110/2000/phvVT0qZfcRms5qDAk0SI3CM.png" },
-        { id: 4, title: "Mario Kart 8", price: 39.99, platform: "SWITCH", image: "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000000185/de697f48773747355555555555555555" },
-        { id: 5, title: "Cyberpunk 2077", price: 29.99, platform: "PC", image: "https://image.api.playstation.com/vulcan/ap/rnd/202009/2914/Ci9v9C1z9C1z9C1z9C1z9C1z.png" },
+        { id: 1, title: "Far Cry 5", price: 16.99, platform: "PC", image: "https://upload.wikimedia.org/wikipedia/en/8/8c/Far_Cry_5_box_art.jpg", discount: 15 },
+        { id: 2, title: "Minecraft", price: 18.99, platform: "PS4", image: "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" },
+        { id: 3, title: "Elden Ring", price: 46.99, platform: "XBOX", image: "https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_Art.jpg" },
+        { id: 4, title: "Mario Kart 8", price: 39.99, platform: "SWITCH", image: "https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg" },
+        { id: 5, title: "Cyberpunk 2077", price: 29.99, platform: "PC", image: "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg" },
+        { id: 9, title: "Red Dead Redemption 2", price: 19.99, platform: "PS4", image: "https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg", discount: 65 },
+        { id: 10, title: "FIFA 23", price: 59.99, platform: "XBOX", image: "https://upload.wikimedia.org/wikipedia/en/a/a6/FIFA_23_Cover.jpg" },
+        { id: 11, title: "Zelda: Breath of the Wild", price: 49.99, platform: "SWITCH", image: "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg" },
+        { id: 12, title: "Grand Theft Auto V", price: 14.99, platform: "PC", image: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png", discount: 50 },
+        { id: 13, title: "Hogwarts Legacy", price: 69.99, platform: "PS5", image: "https://upload.wikimedia.org/wikipedia/en/7/7c/Hogwarts_Legacy_cover.jpg" },
     ];
 
     const featuredDeals = [
-        { id: 6, title: "God of War", price: 24.99, platform: "PS5", image: "https://image.api.playstation.com/vulcan/ap/rnd/202009/2914/Ci9v9C1z9C1z9C1z9C1z9C1z.png", discount: 50 },
-        { id: 7, title: "Halo Infinite", price: 19.99, platform: "XBOX", image: "https://image.api.playstation.com/vulcan/ap/rnd/202110/2000/phvVT0qZfcRms5qDAk0SI3CM.png", discount: 60 },
-        { id: 8, title: "The Witcher 3", price: 14.99, platform: "PC", image: "https://image.api.playstation.com/vulcan/ap/rnd/202009/2914/Ci9v9C1z9C1z9C1z9C1z9C1z.png", discount: 70 },
+        { id: 6, title: "God of War", price: 24.99, platform: "PS5", image: "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg", discount: 50 },
+        { id: 7, title: "Halo Infinite", price: 19.99, platform: "XBOX", image: "https://upload.wikimedia.org/wikipedia/en/1/14/Halo_Infinite.png", discount: 60 },
+        { id: 8, title: "The Witcher 3", price: 14.99, platform: "PC", image: "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg", discount: 70 },
+        { id: 14, title: "Assassin's Creed Valhalla", price: 19.99, platform: "PS5", image: "https://upload.wikimedia.org/wikipedia/en/f/ff/Assassin%27s_Creed_Valhalla_cover.jpg", discount: 60 },
+        { id: 15, title: "Resident Evil Village", price: 29.99, platform: "XBOX", image: "https://upload.wikimedia.org/wikipedia/en/2/2c/Resident_Evil_Village_Cover.jpg", discount: 40 },
+        { id: 16, title: "Horizon Forbidden West", price: 39.99, platform: "PS5", image: "https://upload.wikimedia.org/wikipedia/en/6/69/Horizon_Forbidden_West_cover_art.jpg", discount: 30 },
     ];
 
     return (
@@ -42,7 +50,7 @@ const Home: React.FC = () => {
                             Massive discount - Limited time offer!
                         </p>
                         <div className="flex gap-4 pt-4">
-                            <Link to="/browse" className="btn btn-primary btn-lg rounded-full px-8 text-black font-bold hover:scale-105 transition-transform shadow-xl">
+                            <Link to="/browse" className="btn bg-yellow-400 hover:bg-yellow-500 border-none btn-lg rounded-full px-8 text-black font-bold hover:scale-105 transition-transform shadow-xl hover:shadow-yellow-400/50">
                                 Buy Now
                             </Link>
                             <button className="btn btn-outline btn-lg rounded-full px-8 text-white border-white hover:bg-white hover:text-black font-bold shadow-xl">

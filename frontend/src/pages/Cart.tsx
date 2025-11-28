@@ -39,8 +39,12 @@ const Cart = () => {
                             >
                                 {/* Image */}
                                 <img
-                                    src={item.image}
+                                    src={item.image || "https://placehold.co/600x400/1f2937/white?text=No+Image"}
                                     alt={item.name}
+                                    onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = "https://placehold.co/600x400/1f2937/white?text=No+Image";
+                                    }}
                                     className="w-24 h-24 object-cover rounded-lg"
                                 />
 
