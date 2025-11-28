@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
                 </div>
 
                 <div className="flex-none gap-3">
-                    <Link to="/sell" className="btn btn-sm btn-primary rounded-full px-6 normal-case font-semibold text-black hover:bg-yellow-500">
+                    <Link to="/sell" className="btn btn-sm bg-yellow-400 hover:bg-yellow-500 border-none rounded-full px-6 normal-case font-semibold text-black shadow-lg hover:shadow-yellow-400/50">
                         Sell Games
                     </Link>
 

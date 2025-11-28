@@ -8,14 +8,18 @@ const Browse: React.FC = () => {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
 
     // Mock data
-    const games = Array(10).fill(null).map((_, i) => ({
-        id: i + 1,
-        title: i % 2 === 0 ? "Far Cry 5" : "CyberPunk 2077",
-        price: 43.99,
-        platform: i % 3 === 0 ? "PS4" : "PC",
-        image: "https://image.api.playstation.com/vulcan/ap/rnd/202009/2914/Ci9v9C1z9C1z9C1z9C1z9C1z.png",
-        discount: 15
-    }));
+    const games = [
+        { id: 1, title: "Far Cry 5", price: 16.99, platform: "PC", image: "https://upload.wikimedia.org/wikipedia/en/8/8c/Far_Cry_5_box_art.jpg", discount: 15 },
+        { id: 2, title: "Minecraft", price: 18.99, platform: "PS4", image: "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" },
+        { id: 3, title: "Elden Ring", price: 46.99, platform: "XBOX", image: "https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_Art.jpg" },
+        { id: 4, title: "Mario Kart 8", price: 39.99, platform: "SWITCH", image: "https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg" },
+        { id: 5, title: "Cyberpunk 2077", price: 29.99, platform: "PC", image: "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg" },
+        { id: 6, title: "God of War", price: 24.99, platform: "PS5", image: "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg", discount: 50 },
+        { id: 7, title: "Halo Infinite", price: 19.99, platform: "XBOX", image: "https://upload.wikimedia.org/wikipedia/en/1/14/Halo_Infinite.png", discount: 60 },
+        { id: 8, title: "The Witcher 3", price: 14.99, platform: "PC", image: "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg", discount: 70 },
+        { id: 9, title: "Red Dead Redemption 2", price: 19.99, platform: "PS4", image: "https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg", discount: 65 },
+        { id: 10, title: "FIFA 23", price: 59.99, platform: "XBOX", image: "https://upload.wikimedia.org/wikipedia/en/a/a6/FIFA_23_Cover.jpg" },
+    ];
 
     return (
         <div className="min-h-screen bg-base-100">
@@ -164,7 +168,15 @@ const Browse: React.FC = () => {
                                         className="card card-side bg-gray-900 shadow-xl border border-gray-800 hover:border-yellow-400 transition-all cursor-pointer"
                                     >
                                         <figure className="w-40 h-32 overflow-hidden flex-shrink-0">
-                                            <img src={game.image} alt={game.title} className="w-full h-full object-cover" />
+                                            <img
+                                                src={game.image || "https://placehold.co/600x400/1f2937/white?text=No+Image"}
+                                                alt={game.title}
+                                                onError={(e) => {
+                                                    const target = e.target as HTMLImageElement;
+                                                    target.src = "https://placehold.co/600x400/1f2937/white?text=No+Image";
+                                                }}
+                                                className="w-full h-full object-cover"
+                                            />
                                         </figure>
                                         <div className="card-body p-4 flex-row justify-between items-center">
                                             <div className="flex-1">
@@ -194,7 +206,7 @@ const Browse: React.FC = () => {
                                                     </button>
                                                     <button
                                                         onClick={(e) => e.stopPropagation()}
-                                                        className="btn btn-sm btn-primary rounded-full px-6 text-black font-semibold"
+                                                        className="btn btn-sm bg-yellow-400 hover:bg-yellow-500 border-none rounded-full px-6 text-black font-semibold shadow-lg hover:shadow-yellow-400/50"
                                                     >
                                                         <ShoppingCart size={16} />
                                                         Add to Cart

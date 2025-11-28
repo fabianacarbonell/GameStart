@@ -54,7 +54,7 @@ const ProductDetail = () => {
                 id: product.id,
                 name: product.name,
                 price: price,
-                image: product.images[0]?.image || '/placeholder-game.jpg',
+                image: product.images[0]?.image || "https://placehold.co/600x400/1f2937/white?text=No+Image",
                 platform: product.platforms,
             });
         }
@@ -107,8 +107,12 @@ const ProductDetail = () => {
                     <div className="space-y-4">
                         <div className="relative bg-gray-900 rounded-lg overflow-hidden aspect-video">
                             <img
-                                src={product.images[selectedImage]?.image || '/placeholder-game.jpg'}
+                                src={product.images[selectedImage]?.image || "https://placehold.co/600x400/1f2937/white?text=No+Image"}
                                 alt={product.name}
+                                onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    target.src = "https://placehold.co/600x400/1f2937/white?text=No+Image";
+                                }}
                                 className="w-full h-full object-cover"
                             />
                             {discountPercent > 0 && (
@@ -134,8 +138,12 @@ const ProductDetail = () => {
                                             }`}
                                     >
                                         <img
-                                            src={img.image}
+                                            src={img.image || "https://placehold.co/600x400/1f2937/white?text=No+Image"}
                                             alt={`${product.name} ${index + 1}`}
+                                            onError={(e) => {
+                                                const target = e.target as HTMLImageElement;
+                                                target.src = "https://placehold.co/600x400/1f2937/white?text=No+Image";
+                                            }}
                                             className="w-full h-full object-cover"
                                         />
                                     </button>

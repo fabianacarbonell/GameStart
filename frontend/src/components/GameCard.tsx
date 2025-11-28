@@ -34,8 +34,12 @@ const GameCard: React.FC<GameProps> = ({ id, title, price, image, platform, disc
         >
             <figure className="relative h-48 overflow-hidden bg-gray-800">
                 <img
-                    src={image}
+                    src={image || "https://placehold.co/600x400/1f2937/white?text=No+Image"}
                     alt={title}
+                    onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "https://placehold.co/600x400/1f2937/white?text=No+Image";
+                    }}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 {/* Platform Badge */}
@@ -85,7 +89,7 @@ const GameCard: React.FC<GameProps> = ({ id, title, price, image, platform, disc
                         </button>
                         <button
                             onClick={handleAddToCart}
-                            className="btn btn-circle btn-sm btn-primary text-black hover:bg-yellow-300 transition-all shadow-lg"
+                            className="btn btn-circle btn-sm bg-yellow-400 hover:bg-yellow-500 border-none text-black transition-all shadow-lg hover:shadow-yellow-400/50"
                         >
                             <ShoppingCart size={18} />
                         </button>
